@@ -1,16 +1,24 @@
-this.KEYCODE_LEFT = 37;
-this.KEYCODE_RIGHT = 39;
-this.KEYCODE_UP = 38;
-this.KEYCODE_DOWN = 40;
-    
+this.KEY_LEFT = 37;
+this.KEY_RIGHT = 39;
+this.KEY_UP = 38;
+this.KEY_DOWN = 40;
+
+this.UP = 0;
+this.DOWN = 180;
+this.LEFT = 270;
+this.RIGHT = 90;
+
 var stage;
 var snake;
 var square;
+var startPoint;
 
 function init() {
 	stage = new createjs.Stage("gameCanvas");
 	
-	snake = new Snake(3, 0, 50, stage);
+	startPoint = new Point(0, 50);
+
+	snake = new Snake(startPoint, 3, stage);
 	stage.update();
 	
 	this.document.onkeydown = keyPressed;
@@ -18,7 +26,7 @@ function init() {
 	
 	//createjs.Ticker.addEventListener("tick", tick);
 	createjs.Ticker.on("tick", tick);
-	createjs.Ticker.setFPS(60);
+	createjs.Ticker.setFPS(30);
 }
 
 function keyPressed(event) {
